@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Sass",
+    "description": "Syntactically Awesome Style Sheets.",
+    "image": "https://frontend-test-api.digitalcreative.cn/sass.png",
+    "url": "https://sass-lang.com/",
+    "category": "Languages & Frameworks"
+  },
+  {
+    "title": "Docker Swarm",
+    "description": "Native clustering for Docker. Turn a pool of Docker hosts into a single, virtual host.",
+    "image": "https://frontend-test-api.digitalcreative.cn/docker-swarm.png",
+    "url": "https://github.com/docker/swarm",
+    "category": "Build, Test, Deploy"
+  },
+  {
+    "title": "GitHub",
+    "description": "Powerful collaboration, review, and code management for open source and private development projects.",
+    "image": "https://frontend-test-api.digitalcreative.cn/github.png",
+    "url": "https://github.com/",
+    "category": "Build, Test, Deploy"
+  }
+]

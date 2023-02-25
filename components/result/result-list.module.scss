@@ -1,0 +1,48 @@
+.listWrap {
+  transition: height 0.15s ease-in;
+  position: relative;
+}
+
+.listContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  list-style: none;
+  max-height: 405px;
+  margin-bottom: 0;
+  transition: height 0.15s ease-in;
+}
+
+.imgContainer {
+  height: 405px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: height 0.15s ease-in;
+}
+
+.loading-enter {
+  opacity: 0.01;
+}
+
+.loading-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.loading-enter-done {
+  opacity: 1;
+}
+
+.loading-exit {
+  opacity: 1;
+}
+
+.loading-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.loading-exit-done {
+  opacity: 0;
+}

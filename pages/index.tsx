@@ -1,6 +1,38 @@
-import Head from "next/head";
+import Head from "next/head"
+import { useEffect, useMemo, useState } from "react"
+import styles from "./home.module.scss"
+import { Search, Tag, ResultList, Footer, TagList } from "@/components"
+import { getSearchResult, Result } from "@/api/search"
 
 export default function Home() {
+  const [activeTag, setTag] = useState("")
+  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [list, setList] = useState<Result[]>([])
+  const len = useMemo(() => list.length, [list])
+
+  const request = useMemo(() => {
+    let start = Date.now()
+    return function (activeTag: string, delay: number) {
+      let now = Date.now()
+      if (now - start >= delay) {
+        setLoading(true)
+        setError(false)
+        getSearchResult(activeTag).then((res) => {
+          if (res instanceof Error) setError(true), setList([])
+          else setList(res)
+          setLoading(false)
+        })
+        start = now
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (activeTag) request(activeTag, 500)
+    else setList([]), setLoading(false), setError(false)
+  }, [activeTag, request])
+
   return (
     <>
       <Head>
@@ -9,8 +41,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-      </main>
+      <picture>
+        <img className={styles.logo} src="images/dc-logo.svg" alt="dc-logo.svg" />
+      </picture>
+      <section className={styles.section}>
+        <div className={styles.layout}>
+          <div className={styles.upper}>
+            <Search
+              error={error}
+              value={activeTag}
+              onChange={(e) => setTag(e)}
+              onSearch={(e) => (setTag(e), request(activeTag, 0))}
+            ></Search>
+            <TagList activeTag={activeTag} onClick={(e) => setTag(e)}></TagList>
+            <ResultList error={error} loading={loading} list={list}></ResultList>
+          </div>
+          <Footer error={error} loading={loading} len={len}></Footer>
+        </div>
+      </section>
     </>
-  );
+  )
 }

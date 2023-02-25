@@ -1,17 +1,12 @@
-const basePath =
-  process.env.NODE_ENV === "production"
-    ? "/role-picker-referring-to-party-animals"
-    : "";
+const basePath = process.env.NODE_ENV === "production" ? "/digital-creative-search-component" : ""
 const assetPrefix =
-  process.env.NODE_ENV === "production"
-    ? "/role-picker-referring-to-party-animals"
-    : "/";
+  process.env.NODE_ENV === "production" ? "/digital-creative-search-component" : "/"
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   basePath: basePath,
-  assetPrefix: assetPrefix,
-};
+  assetPrefix: assetPrefix
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
