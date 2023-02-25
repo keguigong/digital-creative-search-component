@@ -41,10 +41,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <picture>
-        <img className={styles.logo} src="images/dc-logo.svg" alt="dc-logo.svg" />
-      </picture>
       <section className={styles.section}>
+        {/* <picture>
+        <img className={styles.logo} src="images/dc-logo.svg" alt="dc-logo.svg" />
+      </picture> */}
         <div className={styles.layout}>
           <div className={styles.upper}>
             <Search

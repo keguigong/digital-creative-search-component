@@ -2,7 +2,9 @@
   min-height: 100vh;
   width: 100vw;
   background: var(--background-body-color);
-  padding-top: 4rem;
+  padding: 4rem 1rem;
+  padding-bottom: 0;
+  position: relative;
 }
 
 .logo {
@@ -12,12 +14,24 @@
 }
 
 .layout {
+  z-index: 10;
   margin: 0 auto;
   width: 100%;
   max-width: 690px;
   background-color: var(--background-color);
   border-radius: var(--border-radius-large);
   box-shadow: var(--box-shadow);
+}
+
+@media screen and (max-width: 720px) {
+  .section {
+    padding: 0;
+  }
+
+  .layout {
+    box-shadow: none;
+    border-radius: 0;
+  }
 }
 
 .upper {
