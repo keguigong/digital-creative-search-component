@@ -1,28 +1,41 @@
 .listWrap {
-  transition: height 0.15s ease-in;
   position: relative;
+  margin-top: 20px;
+  padding: 0 0 0 24px;
+  transition: height 0.1s ease-in-out;
+  overflow: hidden;
+}
+
+.mask {
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-image: linear-gradient(180deg, #000 0%, #000 100%);
+  mask-position: left top;
 }
 
 .listContainer {
   flex: 1;
-  overflow-y: auto;
+  margin: 0;
   padding: 0;
+  padding-right: 24px;
   list-style: none;
-  max-height: 405px;
   margin-bottom: 0;
-  transition: height 0.15s ease-in;
+  overflow-x: hidden;
+  overflow-y: overlay;
+  max-height: 405px;
 }
 
 .imgContainer {
   height: 405px;
+  padding-right: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: height 0.15s ease-in;
 }
 
+// transition
 .loading-enter {
-  opacity: 0.01;
+  opacity: 0;
 }
 
 .loading-enter-active {

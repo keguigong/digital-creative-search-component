@@ -31,8 +31,10 @@
     opacity: 0;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--background-gray-color);
+    outline: none;
 
     &::after {
       opacity: 1;

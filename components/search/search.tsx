@@ -1,5 +1,5 @@
-import cn from "classnames"
 import { useEffect, useState } from "react"
+import cn from "classnames"
 import styles from "./search.module.scss"
 
 type Props = {
@@ -27,7 +27,11 @@ export function Search({ value, onChange, onSearch, error }: Props) {
         type="text"
         placeholder={palceholder}
         onChange={(e) => onChange?.call(null, e.target.value)}
-        onSubmit={(e) => onSearch?.call(null, text)}
+        onKeyDown={(e) => {
+          if (e.code === "Enter") {
+            onSearch?.call(null, text)
+          }
+        }}
       />
     </div>
   )
