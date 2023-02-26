@@ -24,7 +24,7 @@ export function getSearchResult(keyword: string) {
   return new Promise<Result[] | Error>((resolve) => {
     axios
       .get<Results>(`${digitalCreative}${keyword}`, {
-        timeout: 5000,
+        timeout: 10000,
         signal: controller!!.signal
       })
       .then((res) => {

@@ -25,7 +25,7 @@ export function ResultList({ list = results, error, loading }: Props) {
   // Read moew: https://github.com/reactjs/react-transition-group/issues/668#issuecomment-695162879
   const nodeRef = useRef(null)
   const switchRef = useRef(null)
-  const [height, setHeight] = useState(350)
+  const [height, setHeight] = useState(406)
 
   const tranState = useMemo(() => {
     if (error) return "error"

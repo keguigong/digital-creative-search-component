@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 import styles from "./home.module.scss"
 import { controller, getSearchResult, Result, throttled } from "@/api/search"
@@ -17,9 +17,15 @@ export default function Home() {
   const [list, setList] = useState<Result[]>([])
   // For footer
   const len = useMemo(() => list.length, [list])
+  /**
+   * Prevent update state when activeTag was cleared
+   * When false, setList/setError/setLoading cannot be called
+   */
+  const setterFlag = useRef(true)
 
   const request = useMemo(() => {
     const getResults = (_activeTag: string) => {
+      if (setterFlag.current === false) return
       setLoading(true)
       /**
        * Restore the error state of both input and footer
@@ -27,6 +33,7 @@ export default function Home() {
        */
       setError((error) => [false, error[1]])
       getSearchResult(_activeTag).then((res) => {
+        if (setterFlag.current === false) return
         if (res instanceof Error) setError([true, true]), setList([])
         /**
          * Remember to restore both errors when made successful requests
@@ -43,10 +50,15 @@ export default function Home() {
      * Make request when activeTag changes.
      * Restore state when activeTag is empty.
      */
-    if (activeTag) request(500, activeTag)
-    else {
-      setList([]), setLoading(false), setError([false, false])
+    if (activeTag) {
+      setterFlag.current = true
+      request(500, activeTag)
+    } else {
       controller?.abort()
+      setterFlag.current = false
+      Promise.resolve().then(() => {
+        setList([]), setLoading(false), setError([false, false])
+      })
     }
 
     return () => {

@@ -20,8 +20,6 @@
   }
 
   &:focus {
-    top: 0;
-    left: 0;
     outline: 2px solid var(--primary-color);
     outline-offset: -2px;
   }
