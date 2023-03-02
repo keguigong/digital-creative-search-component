@@ -49,12 +49,23 @@ export function throttled(fn: (...args: any[]) => void) {
   return function (delay: number, ...args: any[]) {
     let now = Date.now()
     let remaining = delay - (now - start)
-    timer && clearTimeout(timer)
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
+    }
     if (remaining <= 0) {
       fn.apply(null, args)
       start = Date.now()
+      console.log("throttled")
     } else {
-      timer = setTimeout(() => fn.apply(null, args), remaining)
+      if (timer) {
+        clearTimeout(timer)
+        timer = null
+      }
+      timer = setTimeout(() => {
+        fn.apply(null, args)
+        console.log("setTimeout")
+      }, remaining + 500)
     }
   }
 }

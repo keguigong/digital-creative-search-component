@@ -52,7 +52,7 @@ export default function Home() {
      */
     if (activeTag) {
       setterFlag.current = true
-      request(500, activeTag)
+      request(1000, activeTag)
     } else {
       controller?.abort()
       setterFlag.current = false
